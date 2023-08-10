@@ -1,5 +1,8 @@
 package com.keevol.demo.htmx.quickstarter
 
+import com.keevol.demo.htmx.oob.OobRouteRegister
+import com.keevol.demo.htmx.pooling.PoolingRoutes
+import com.keevol.demo.htmx.sse.SseHandlers
 import com.keevol.kate.{Kate, RouteRegister}
 import io.vertx.core.http.HttpHeaders
 import io.vertx.ext.web.Router
@@ -64,15 +67,15 @@ object Bootstrap {
   def requestOpenAI(message: String): String = "模拟结果消息： just for test ;)"
 
   def main(args: Array[String]): Unit = {
-    val webServer = new Kate(Array(new RouteRegister {
+    val xchatHandler = new RouteRegister {
       override def apply(router: Router): Unit = {
         // HTTP GET
-        router.route("/").handler(ctx => {
-//          ctx.response().putHeader(HttpHeaders.CONTENT_TYPE.toString, MimeTypes.HTML)
+        router.get("/").handler(ctx => {
+          //          ctx.response().putHeader(HttpHeaders.CONTENT_TYPE.toString, MimeTypes.HTML)
           ctx.response().end(indexPageHtml)
         })
         // HTTP POST route for chat request
-        router.route("/chat").handler(ctx => {
+        router.post("/chat").handler(ctx => {
           val message = ctx.request().getParam("message")
           val responseMessage = requestOpenAI(message)
           //          ctx.response().putHeader(HttpHeaders.CONTENT_TYPE.toString, MimeTypes.HTML)
@@ -84,7 +87,12 @@ object Bootstrap {
           ctx.response().end(responseContentInHtmlSegment)
         })
       }
-    }))
+    }
+    val oobHandler = new OobRouteRegister()
+    val sseHandler = new SseHandlers()
+    val poolingHandler = new PoolingRoutes()
+
+    val webServer = new Kate(Array(xchatHandler, oobHandler, sseHandler, poolingHandler))
     webServer.start("localhost", 9999)
   }
 }
