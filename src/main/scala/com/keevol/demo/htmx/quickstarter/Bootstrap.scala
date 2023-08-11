@@ -3,6 +3,7 @@ package com.keevol.demo.htmx.quickstarter
 import com.keevol.demo.htmx.oob.OobRouteRegister
 import com.keevol.demo.htmx.pooling.PoolingRoutes
 import com.keevol.demo.htmx.sse.SseHandlers
+import com.keevol.demo.htmx.ws.WsRoutes
 import com.keevol.kate.{Kate, RouteRegister}
 import io.vertx.core.http.HttpHeaders
 import io.vertx.ext.web.Router
@@ -91,8 +92,8 @@ object Bootstrap {
     val oobHandler = new OobRouteRegister()
     val sseHandler = new SseHandlers()
     val poolingHandler = new PoolingRoutes()
-
-    val webServer = new Kate(Array(xchatHandler, oobHandler, sseHandler, poolingHandler))
+    val wsHandler = new WsRoutes()
+    val webServer = new Kate(Array(xchatHandler, oobHandler, sseHandler, poolingHandler, wsHandler))
     webServer.start("localhost", 9999)
   }
 }

@@ -28,8 +28,7 @@ class SseHandlers extends RouteRegister {
            |	<main class="container mx-auto p-3 space-y-3">
            |
            |		<div id="sse"
-           |      hx-sse="connect:/sse" hx-trigger="load delay:3s"
-           |      hx-on:htmx:sse-error="this.remove();">
+           |      hx-sse="connect:/sse" hx-trigger="load delay:3s">
            |			<div hx-sse="swap:e1">
            |			  placeholder for event 1
            |			</div>
@@ -56,6 +55,7 @@ class SseHandlers extends RouteRegister {
       response.headers().add("Cache-Control", "no-cache")
       response.headers().add("Access-Control-Allow-Origin", "*")
 
+      // 发起OpenAI请求获取chunked数据，然后按照SSE格式通过write写回客户端即可。
       response.write(
         s"""
            |event: e1

@@ -18,14 +18,14 @@ class PoolingRoutes extends RouteRegister {
            |<!DOCTYPE html>
            |<html>
            |	<head>
-           |	<meta charset="utf-8" />
+           |	  <meta charset="utf-8" />
            |  	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
            |  	<meta author="fujohnwang" />
            |  	<meta keywords="福强,fujohnwang" />
            |  	<meta description="" />
-           |	<title>Pooling demo</title>
-           |	<script src="https://cdn.tailwindcss.com/"></script>
-           |	<script src="https://unpkg.com/htmx.org@1.9.4"></script>
+           |	  <title>Pooling demo</title>
+           |	  <script src="https://cdn.tailwindcss.com/"></script>
+           |	  <script src="https://unpkg.com/htmx.org@1.9.4"></script>
            |	</head>
            |<body>
            |	<main class="container mx-auto p-3 space-y-3">
