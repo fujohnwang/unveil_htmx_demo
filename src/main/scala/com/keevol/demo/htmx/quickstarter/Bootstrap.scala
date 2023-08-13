@@ -1,5 +1,6 @@
 package com.keevol.demo.htmx.quickstarter
 
+import com.keevol.demo.htmx.ext.ExtDemoRoutes
 import com.keevol.demo.htmx.oob.OobRouteRegister
 import com.keevol.demo.htmx.pooling.PoolingRoutes
 import com.keevol.demo.htmx.sse.SseHandlers
@@ -93,7 +94,8 @@ object Bootstrap {
     val sseHandler = new SseHandlers()
     val poolingHandler = new PoolingRoutes()
     val wsHandler = new WsRoutes()
-    val webServer = new Kate(Array(xchatHandler, oobHandler, sseHandler, poolingHandler, wsHandler))
+    val jsonExtHandler = new ExtDemoRoutes()
+    val webServer = new Kate(Array(xchatHandler, oobHandler, sseHandler, poolingHandler, wsHandler, jsonExtHandler))
     webServer.start("localhost", 9999)
   }
 }
