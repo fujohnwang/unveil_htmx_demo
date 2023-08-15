@@ -1,4 +1,4 @@
-package com.keevol.demo.htmx.quickstarter
+package com.keevol.demo.htmx
 
 import com.keevol.demo.htmx.ext.ExtDemoRoutes
 import com.keevol.demo.htmx.indicator.IndicatorRoutes
@@ -8,9 +8,7 @@ import com.keevol.demo.htmx.pooling.PoolingRoutes
 import com.keevol.demo.htmx.sse.SseHandlers
 import com.keevol.demo.htmx.ws.WsRoutes
 import com.keevol.kate.{Kate, RouteRegister}
-import io.vertx.core.http.HttpHeaders
 import io.vertx.ext.web.Router
-import kong.unirest.MimeTypes
 
 object Bootstrap {
 
