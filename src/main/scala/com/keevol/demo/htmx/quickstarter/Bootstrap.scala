@@ -1,6 +1,7 @@
 package com.keevol.demo.htmx.quickstarter
 
 import com.keevol.demo.htmx.ext.ExtDemoRoutes
+import com.keevol.demo.htmx.indicator.IndicatorRoutes
 import com.keevol.demo.htmx.integrations.AlpinejsHtmxDemoRoutes
 import com.keevol.demo.htmx.oob.OobRouteRegister
 import com.keevol.demo.htmx.pooling.PoolingRoutes
@@ -97,7 +98,9 @@ object Bootstrap {
     val wsHandler = new WsRoutes()
     val jsonExtHandler = new ExtDemoRoutes()
     val integralHandler = new AlpinejsHtmxDemoRoutes()
-    val webServer = new Kate(Array(xchatHandler, oobHandler, sseHandler, poolingHandler, wsHandler, jsonExtHandler, integralHandler))
+    val indicatorHandler = new IndicatorRoutes()
+    val webServer = new Kate(Array(xchatHandler, oobHandler, sseHandler, poolingHandler, wsHandler, jsonExtHandler, integralHandler, indicatorHandler))
     webServer.start("localhost", 9999)
+    println("start server at=> localhost:9999")
   }
 }
